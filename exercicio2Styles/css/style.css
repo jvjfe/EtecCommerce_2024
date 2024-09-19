@@ -1,0 +1,228 @@
+:root {
+    --corFundoDoHeader: #000000;
+    --corFonteDoHeader: #ffffff;
+    --corHoverLinkDoHeader: #c1c1c1;
+
+    --corFundoDoMain: #F5F5F5;
+    --corFonteDoMain: #000000;
+    --corBordaDoCard: #4F4F4F;
+    --corHoverDoCard: #DCDCDC;
+    --corFonteDoCard: #4F4F4F;
+    --corFundoBotaoDoCard:#4F4F4F;
+    --corFonteDoBotaoDoCard: #F5F5F5;
+
+
+    --corFundoDoFooter: #4F4F4F;
+    --corFonteDoFooter: #DCDCDC;
+    --corHoverLinkDoFooter: #808080;
+
+
+    --fontFamily: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fontFamily);
+}
+
+header {
+    background-color: var(--corFundoDoHeader);
+    color: var(--corFonteDoHeader);
+    height: 15dvh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    border-bottom: 3px solid var(--corFonteDoHeader);    
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--corFonteDoHeader);
+}
+
+.logo i {
+    font-size: 50px;
+}
+
+.logo p {
+    font-size: 30px;
+}
+
+
+.navegacao nav a {
+    text-decoration: none;
+    color: var(--corFonteDoHeader);
+    padding: 5px 3px 5px 3px;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    transition: all 1s ease;
+}
+
+.navegacao nav a:hover {
+    border-bottom: 1px solid var(--corFonteDoFooter);
+    border-top: 1px solid var(--corFonteDoFooter);
+    color: var(--corFonteDoFooter);
+    font-size: 12px;
+    padding:8px 8px 8px 8px;
+}
+
+
+.login button {
+    width: 100px;
+    height: 40px;
+    font-size: 18px;
+    background-color: var(--corFundoDoHeader);
+    color: var(--corFonteDoHeader);
+    border: 2px solid var(--corFonteDoHeader);
+    transition: all 1s ease;
+    border-radius: 5px;
+    transition: all 1s ease;
+
+}
+
+.login button:hover {
+    background-color: var(--corFonteDoHeader);
+    color: var(--corFundoDoHeader);
+    border: 2px solid transparent;
+}
+
+footer {
+    background-color: var(--corFundoDoFooter);
+    color: var(--corFonteDoFooter);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+#sobre nav,
+#paravoce nav,
+#redessociais nav {
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: space-between;
+    height: auto;
+    /* Garantir que a altura seja ajustável */
+    gap: 5px;
+}
+
+#sobre h3,
+#paravoce h3,
+#redessociais h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#sobre nav a,
+#paravoce nav a,
+#redessociais nav a {
+    display: flex;
+    flex-direction: row;
+    align-items: first baseline;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--corFonteDoFooter);
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 2px solid transparent;
+}
+
+#sobre nav a:hover,
+#paravoce nav a:hover,
+#redessociais nav a:hover {
+    color: var(--corHoverLinkDoFooter);
+}
+
+main {
+    background-color: var(--corFundoDoMain);
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-around;
+    gap: 10px;
+    width: 28vh;
+    height: 350px;
+    border: 3px solid var(--corBordaDoCard);
+    box-shadow: 2px 2px 5px var(--corBordaDoCard);
+    padding: 10px 5px 10px 5px;
+    border-radius: 2px;
+    transition: all 1s ease;
+    color: var(--corFonteDoCard);
+}
+
+.card:hover {
+    background-color: var(--corHoverDoCard);
+}
+
+.card img {
+    width: 100%;
+    opacity: 0.8;
+    transition: all 1s ease;
+}
+
+.card img:hover {
+    opacity: 1;
+}
+
+.card h3{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.card p{
+    font-size: 12px;
+}
+
+.botao-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.card button{
+    width: 80%;
+    height: 30px;
+    border: 2px solid var(--corBordaDoCard);
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px var(--corBordaDoCard);
+    background-color: var(--corFundoBotaoDoCard);
+    color: var(--corFonteDoBotaoDoCard);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.card button:hover{
+    background-color: var(--corFonteDoBotaoDoCard);
+    color: var(--corFundoBotaoDoCard);
+    border: 2px solid var(--corFundoBotaoDoCard);
+}
