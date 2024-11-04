@@ -51,4 +51,8 @@
 
         </nav>
     </section>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Desenvolvido por João Vítor Justino Ferri ®</p>
+        </div>
 </footer>

@@ -1,3 +1,26 @@
+<?php
+    if(!isset($_GET["idEstado"])){
+        header("location:estados.php");
+    }
+    // Capturar o valor do parâmetro idEstado
+    $idEstado = htmlspecialchars($_GET["idEstado"]);
+    // Inicialiar as variáveis
+    $sigla = "";
+    $nome = "";
+    // Se necessário, consultarEstado para obter os valores das variáveis
+    if($idEstado!=0){
+        // Requer ClasseEstado.php
+        require("ClasseEstado.php");
+        // Instanciar o $objetoEstado a partir da ClasseEstado
+        $objetoEstado =  new ClasseEstado();
+        // Executar o método consultarEstado
+        $objetoEstado->consultarEstado($idEstado);
+        // As variáveis recebem os valores dos atributos do $objetoEstado
+        $sigla = $objetoEstado->getSigla();
+        $nome = $objetoEstado->getNome();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -6,7 +29,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etec Commerce</title>
     <!-- Folha de estilos -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylesestado.css">
     <!-- Ícone da aba do navegador -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- link fontawesome -->
@@ -18,11 +41,16 @@
     <main>
         <section class="formulario">
             <h1>Estado</h1>
-            <form action="salvarestado.php" class="formulario-form" method="GET">
+            <form action="salvarestado.php" class="formulario-form" method="POST">
+                <label for="campoSigla">
 
+                </label>
                 <input type="text"
                     id="campoIdEstado"
-                    name="campoIdEstado">
+                    name="campoIdEstado"
+                    value="<?php echo $idEstado;?>"
+                    placeholder="ID">
+                    
 
                 <label for="campoSigla">
                     Sigla
@@ -34,6 +62,7 @@
                     maxlength="2"
                     placeholder="Sigla do Estado"
                     oninput="validarSigla(event)"
+                    value="<?php echo $sigla;?>"
                     required>
 
                 <label for="campoNome">
@@ -46,12 +75,14 @@
                     maxlength="50"
                     placeholder="Nome do Estado"
                     oninput="validarNome(event)"
+                    value="<?php echo $nome;?>"
                     required>
 
                 <input type="submit"
                 value="Salvar"
                 id="botaoSalvar"
-                name="botaoSalvar">
+                name="botaoSalvar"
+                class="submit-button">
 
             </form>
 

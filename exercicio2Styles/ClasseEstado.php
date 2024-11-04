@@ -166,12 +166,29 @@ class ClasseEstado
     /* Método consultarEstado */
     public function consultarEstado($idEstado)
     {
+        require("conexaobd.php");
 
+        $consulta = "SELECT * FROM viewEstados WHERE IDESTADO=:idEstado";
+
+        $stmt = $pdo->prepare($consulta);
+
+        $stmt->bindParam("idEstado", $idEstado);
+
+        $stmt->execute();
+        foreach ($stmt as $linha) {
+            $this->idEstado = $linha["IDESTADO"];
+            $this->nome = $linha["NOME"];
+            $this->sigla = $linha["SIGLA"];
+        }
     }
 
     /* Método listarEstados */
     public function listarEstados()
     {
-
+        require("conexaobd.php");
+        $consulta = "SELECT * FROM viewEstados";
+        $stmt = $pdo->prepare($consulta);
+        $stmt->execute();
+        return  $stmt;
     }
 }

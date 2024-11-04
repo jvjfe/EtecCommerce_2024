@@ -363,7 +363,7 @@ BEGIN
 
 	
 	-- Verificar se a sigla tem exatamente 2 caracteres
-	ELSEIF CHAR_LENGHT (pSIGLA) != 2 THEN
+	ELSEIF CHAR_LENGTH (pSIGLA) != 2 THEN
 		SET textoResultado = 'Erro: A sigla deve ter exatamente 2 caracteres.';
     
 
@@ -373,7 +373,7 @@ BEGIN
 		SET textoResultado = 'Erro: A sigla deve conter apenas letras (incluindo acentuação e cê cedilha)';
     
     -- Verificar se o nome tem, no mínimo, 4 caracteres
-    ELSEIF CHAR_LENGHT (pNOME) < 4 THEN
+    ELSEIF CHAR_LENGTH (pNOME) < 4 THEN
 	SET textoResultado = 'Erro: o nome do estado deve ter no mínimo 4 caracteres';
 
 
@@ -482,4 +482,252 @@ BEGIN
 	
 	RETURN vRETORNO;
 END $$
+DELIMITER ;
+
+CREATE VIEW viewEstados AS
+SELECT IDESTADO,SIGLA,NOME,CIDADES FROM estado ORDER BY NOME;
+
+
+SELECT * FROM viewEstados;
+
+marca(IDMARCA,NOME,PRODUTOS,DTINSERT,HRINSERT,DTUPDATE,RHUPDATE)
+CREATE TABLE marca
+(
+	IDMARCA INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(50) NOT NULL UNIQUE,
+	PRODUTOS INT DEFAULT 0,
+	DTINSERT DATE,
+	HRINSERT TIME,
+	DTUPDATE DATE,
+	HRUPDATE TIME
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
+
+
+bkpmarca(IDBKPMARCA,IDMARCA,NOME,PRODUTOS,,HRINSERT,DTUPDATE,RHUPDATE,DTBKP,HRBKP)
+CREATE TABLE bkpmarca
+(
+	IDBKPMARCA INT PRIMARY KEY AUTO_INCREMENT,
+	IDMARCA INT NOT NULL,
+	NOME VARCHAR(50) NOT NULL UNIQUE,
+	PRODUTOS INT DEFAULT 0,
+	DTINSERT DATE,
+	HRINSERT TIME,
+	DTUPDATE DATE,
+	HRUPDATE TIME,
+	DTBKP,
+	HRBKP
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
+
+-- unidade(IDUNIDADE, NOME, PRODUTOS, DTINSERT, HRINSERT, DTUPDATE, RHUPDATE)
+CREATE TABLE unidade
+(
+    IDUNIDADE INT PRIMARY KEY AUTO_INCREMENT,
+    NOME VARCHAR(20) NOT NULL UNIQUE,
+    PRODUTOS INT DEFAULT 0,
+    DTINSERT DATE,
+    HRINSERT TIME,
+    DTUPDATE DATE,
+    RHUPDATE TIME
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
+
+-- bkpunidade(IDBKPUNIDADE, IDUNIDADE, NOME, PRODUTOS, HRINSERT, DTUPDATE, RHUPDATE, DTBKP, HRBKP)
+CREATE TABLE bkpunidade
+(
+    IDBKPUNIDADE INT PRIMARY KEY AUTO_INCREMENT,
+    IDUNIDADE INT NOT NULL,
+    NOME VARCHAR(20) NOT NULL,
+    PRODUTOS INT DEFAULT 0,
+    DTINSERT DATE,
+    HRINSERT TIME,
+    DTUPDATE DATE,
+    RHUPDATE TIME,
+    DTBKP DATE,
+    HRBKP TIME
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
+
+-- bkpcidade(IDBKPCIDADE, IDCIDADE, NOME, IDESTADO, CLIENTES, DTINSERT, HRINSERT, DTUPDATE, HRUPDATE, DTBKP, HRBKP)
+CREATE TABLE bkpcidade
+(
+    IDBKPCIDADE INT PRIMARY KEY AUTO_INCREMENT,
+    IDCIDADE INT NOT NULL,
+    NOME VARCHAR(50) NOT NULL,
+    IDESTADO INT NOT NULL,
+    CLIENTES INT DEFAULT 0,
+    DTINSERT DATE,
+    HRINSERT TIME,
+    DTUPDATE DATE,
+    HRUPDATE TIME,
+    DTBKP DATE,
+    HRBKP TIME
+) ENGINE=INNODB DEFAULT CHARSET=LATIN1;
+
+-- antesInserirCidade
+DROP TRIGGER IF EXISTS antesInserirCidade;
+DELIMITER $$ 
+CREATE TRIGGER antesInserirCidade BEFORE INSERT ON cidade FOR EACH ROW
+BEGIN
+    SET NEW.NOME = UPPER(NEW.NOME);
+    SET NEW.DTINSERT = CURRENT_DATE();
+    SET NEW.HRINSERT = CURRENT_TIME();
+END $$ 
+DELIMITER ;
+
+-- antesAlterarCidade
+DROP TRIGGER IF EXISTS antesAlterarCidade;
+DELIMITER $$ 
+CREATE TRIGGER antesAlterarCidade BEFORE INSERT ON cidade FOR EACH ROW
+BEGIN
+    SET NEW.NOME = UPPER(NEW.NOME);
+    SET NEW.DTINSERT = CURRENT_DATE();
+    SET NEW.HRINSERT = CURRENT_TIME();
+END $$ 
+DELIMITER ;
+
+-- depoisAlterarCidade
+DROP TRIGGER IF EXISTS depoisAlterarCidade;
+DELIMITER $$ 
+CREATE TRIGGER depoisAlterarCidade AFTER UPDATE ON cidade FOR EACH ROW
+BEGIN
+    -- Alimentar a tabela bkpcidade
+    INSERT INTO bkpcidade (IDCIDADE, NOME, IDESTADO, DTINSERT, HRINSERT, DTUPDATE, HRUPDATE)
+    VALUES (NEW.IDCIDADE, NEW.NOME, NEW.IDESTADO, NEW.DTINSERT, NEW.HRINSERT, NEW.DTUPDATE, NEW.HRUPDATE);
+
+    -- Alimentar a tabela historico
+    INSERT INTO historico (ACAO, TABELA, ID)
+    VALUES ('UPDATE', 'cidade', NEW.IDCIDADE);
+
+    -- Calcular e atualizar o número de CIDADES do estado
+    IF (NEW.IDESTADO <> OLD.IDESTADO) THEN
+        CALL calcularCidades(NEW.IDESTADO);
+        CALL calcularCidades(OLD.IDESTADO);
+    END IF;
+END $$ 
+DELIMITER ;
+
+-- depoisExcluirCidade
+DROP TRIGGER IF EXISTS depoisExcluirCidade;
+DELIMITER $$ 
+CREATE TRIGGER depoisExcluirCidade AFTER DELETE ON cidade FOR EACH ROW
+BEGIN
+    -- Alimentar a tabela bkpcidade
+    INSERT INTO bkpcidade (IDCIDADE, NOME, IDESTADO, DTINSERT, HRINSERT, DTUPDATE, HRUPDATE)
+    VALUES (OLD.IDCIDADE, OLD.NOME, OLD.IDESTADO, OLD.DTINSERT, OLD.HRINSERT, OLD.DTUPDATE, OLD.HRUPDATE);
+
+    -- Alimentar a tabela historico
+    INSERT INTO historico (ACAO, TABELA, ID)
+    VALUES ('DELETE', 'cidade', OLD.IDCIDADE);
+
+    -- Calcular e atualizar o número de CIDADES do estado
+    CALL calcularCidades(OLD.IDESTADO);
+END $$ 
+DELIMITER ;
+
+-- inserirCidade
+DROP FUNCTION IF EXISTS inserirCidade;
+DELIMITER $$ 
+CREATE FUNCTION inserirCidade (PNOME VARCHAR(50), PIDESTADO INT) RETURNS TEXT DETERMINISTIC
+BEGIN
+    DECLARE VRETORNO TEXT;
+
+    -- Verificar se o NOME da cidade tem pelo menos 3 caracteres
+    IF CHAR_LENGTH(PNOME) < 3 THEN
+        SET VRETORNO = 'Erro: O nome deve ter pelo menos 3 caracteres.';
+
+    -- Verificar se o NOME tem mais do que 50 caracteres
+    ELSEIF CHAR_LENGTH(PNOME) > 50 THEN
+        SET VRETORNO = 'Erro: O nome deve ter no máximo 50 caracteres.';
+
+    -- Verificar se o nome tem caracteres diferentes de letras e acentuação
+    ELSEIF PNOME NOT REGEXP '^[A-Za-zÀ-ÿ\s]+$' THEN
+        SET VRETORNO = 'Erro: O nome deve conter apenas letras (incluindo acentuação e cedilha).';
+
+    -- Verificar se o IDESTADO existe
+    ELSEIF (SELECT COUNT(*) FROM estado WHERE IDESTADO = PIDESTADO) = 0 THEN
+        SET VRETORNO = 'Erro: O estado indicado não existe.';
+
+    -- Verificar se NOME e IDESTADO já estão cadastrados
+    ELSEIF (SELECT COUNT(*) FROM cidade WHERE NOME = PNOME AND IDESTADO = PIDESTADO) > 0 THEN
+        SET VRETORNO = 'Erro: A cidade já está cadastrada nesse estado.';
+
+    -- Inserir a cidade
+    ELSE
+        INSERT INTO cidade (NOME, IDESTADO) VALUES (PNOME, PIDESTADO);
+        SET VRETORNO = 'Sucesso: A cidade foi inserida corretamente.';
+    END IF;
+
+    RETURN VRETORNO;
+END $$ 
+DELIMITER ;
+
+-- alterarCidade
+DROP FUNCTION IF EXISTS alterarCidade;
+DELIMITER $$ 
+CREATE FUNCTION alterarCidade (PIDCIDADE INT, PNOME VARCHAR(50), PIDESTADO INT) RETURNS TEXT DETERMINISTIC
+BEGIN
+    DECLARE VRETORNO TEXT;
+
+    -- Verificar se o NOME da cidade tem pelo menos 3 caracteres
+    IF CHAR_LENGTH(PNOME) < 3 THEN
+        SET VRETORNO = 'Erro: O nome deve ter pelo menos 3 caracteres.';
+
+    -- Verificar se o NOME tem mais do que 50 caracteres
+    ELSEIF CHAR_LENGTH(PNOME) > 50 THEN
+        SET VRETORNO = 'Erro: O nome deve ter no máximo 50 caracteres.';
+
+    -- Verificar se o nome tem caracteres diferentes de letras e acentuação
+    ELSEIF PNOME NOT REGEXP '^[A-Za-zÀ-ÿ\s]+$' THEN
+        SET VRETORNO = 'Erro: O nome deve conter apenas letras (incluindo acentuação e cedilha).';
+
+    -- Verificar se o IDESTADO existe
+    ELSEIF (SELECT COUNT(*) FROM estado WHERE IDESTADO = PIDESTADO) = 0 THEN
+        SET VRETORNO = 'Erro: O estado indicado não existe.';
+
+    -- Verificar se NOME e IDESTADO já estão cadastrados com um IDCIDADE diferente
+    ELSEIF (SELECT COUNT(*) FROM cidade WHERE NOME = PNOME AND IDESTADO = PIDESTADO AND IDCIDADE <> PIDCIDADE) > 0 THEN
+        SET VRETORNO = 'Erro: A cidade já está cadastrada nesse estado.';
+
+    -- Alterar a cidade
+    ELSE
+        UPDATE cidade SET NOME = PNOME, IDESTADO = PIDESTADO WHERE IDCIDADE = PIDCIDADE;
+        SET VRETORNO = 'Sucesso: A cidade foi alterada corretamente.';
+    END IF;
+
+    RETURN VRETORNO;
+END $$ 
+DELIMITER ;
+
+-- excluirCidade
+DROP FUNCTION IF EXISTS excluirCidade;
+DELIMITER $$ 
+CREATE FUNCTION excluirCidade (PIDCIDADE INT) RETURNS TEXT DETERMINISTIC
+BEGIN
+    DECLARE VRETORNO TEXT;
+
+    -- Verificar se há CLIENTES na cidade
+    IF (SELECT CLIENTES FROM cidade WHERE IDCIDADE = PIDCIDADE) > 0 THEN
+        SET VRETORNO = 'Erro: Há clientes cadastrados na cidade.';
+
+    -- Excluir a cidade
+    ELSE
+        DELETE FROM cidade WHERE IDCIDADE = PIDCIDADE;
+        SET VRETORNO = 'Sucesso: A cidade foi excluída corretamente.';
+    END IF;
+
+    RETURN VRETORNO;
+END $$ 
+DELIMITER ;
+
+-- calcularCidades
+DROP PROCEDURE IF EXISTS calcularCidades;
+DELIMITER $$ 
+CREATE PROCEDURE calcularCidades (IN PIDESTADO INT)
+BEGIN
+    DECLARE VCIDADES INT;
+
+    -- Contar o número de cidades no estado especificado
+    SELECT COUNT(*) INTO VCIDADES FROM cidade WHERE IDESTADO = PIDESTADO;
+
+    -- Atualizar o número de cidades no estado
+    UPDATE estado SET CIDADES = VCIDADES WHERE IDESTADO = PIDESTADO;
+END $$ 
 DELIMITER ;

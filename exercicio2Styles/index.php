@@ -25,7 +25,7 @@
                     <button>Saiba mais</button>
                 </section>
             </section>
-
+            <br><br><br>
             <section class="card">
                 <img src="./img/interfaceamigavel.jpg" alt="">
                 <h3>Segurança avançada</h3>
@@ -34,7 +34,7 @@
                     <button>Saiba mais</button>
                 </section>
             </section>
-
+            <br><br><br>
             <section class="card">
                 <img src="./img/interfaceamigavel.jpg" alt="">
                 <h3>Suporte 24/7</h3>
@@ -43,7 +43,7 @@
                     <button>Saiba mais</button>
                 </section>
             </section>
-            
+            <br><br><br>
             <section class="card">
                 <img src="./img/interfaceamigavel.jpg" alt="">
                 <h3>Variedade de produtos</h3>
@@ -52,7 +52,7 @@
                     <button>Saiba mais</button>
                 </section>
             </section>
-
+            <br><br><br>
             <section class="card">
                 <img src="./img/interfaceamigavel.jpg" alt="">
                 <h3>Entrega rápida</h3>
@@ -61,7 +61,7 @@
                     <button>Saiba mais</button>
                 </section>
             </section>
-
+            <br><br><br>
             <section class="card">
                 <img src="./img/interfaceamigavel.jpg" alt="">
                 <h3>Ofertas exclusivas</h3>

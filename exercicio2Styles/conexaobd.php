@@ -12,7 +12,7 @@ try {
     $pdo->exec("SET CHARACTER SET utf8");
     /* Verificar se a conexão foi realizada com sucesso */
     $connection_status = $pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS);
-     echo "Sucesso na conexão MySQL";
+    // echo "Sucesso na conexão MySQL";
 } catch (PDOException $erro){
     echo "Erro na conexão MySQL: " . $erro->getMessage();
 }

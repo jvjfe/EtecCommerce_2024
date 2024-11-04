@@ -226,20 +226,49 @@ main {
     color: var(--corFundoBotaoDoCard);
     border: 2px solid var(--corFundoBotaoDoCard);
 }
-
-.main {
+h1 {
+    margin-left: 520px;
+}
+form {
     justify-content: center;
+    width: 350px; 
+    height: 350px; 
+    border: 2px solid black; 
+    background-color: white; 
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    margin-left: 400px;
+}
+input, textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda dos campos */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+.submit-button {
+    padding: 10px;
+    background-color: black; /* Cor do input submit */
+    color: white; /* Cor do texto do input submit */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-main {
-    background-color: var(--corFundoDoMain);
-    padding-top: 30px;
-    padding-bottom: 30px;
-    display: flex; /* Adicionado para usar flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: flex-start; /* Alinha ao topo */
-    flex-direction: column; /* Coloca o conteúdo em coluna */
+.submit-button:hover {
+    background-color: #333; /* Cor do input submit ao passar o mouse */
+}
+label {
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Borda do campo de texto */
+    border-radius: 4px; /* Bordas arredondadas */
 }
 
 table {
@@ -267,21 +296,4 @@ tr:nth-child(even) {
 
 tr:hover {
     background-color: #ccc; /* Efeito hover em cinza claro */
-}
-
-/* Estilo para o botão "NOVO" */
-.listagem button {
-    margin-top: 20px; /* Espaçamento acima do botão */
-    width: 100px; /* Largura do botão */
-    padding: 10px; /* Padding do botão */
-    background-color: #4F4F4F; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
-    border: none; /* Remove borda */
-    border-radius: 5px; /* Arredonda bordas */
-    cursor: pointer; /* Muda o cursor para mão */
-    transition: background-color 0.3s; /* Transição suave */
-}
-
-.listagem button:hover {
-    background-color: #333; /* Cor do botão ao passar o mouse */
 }
