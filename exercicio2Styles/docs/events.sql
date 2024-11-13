@@ -1,0 +1,1 @@
+-- COMANDO PRA LIGAR O BANCO DE DADOS: mysql -u root -p 

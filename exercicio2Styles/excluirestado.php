@@ -5,11 +5,9 @@ $idEstado = htmlspecialchars($_GET["idEstado"]);
 require("ClasseEstado.php");
 // Instanciar o objetoEstado
 $objetoEstado = new ClasseEstado();
-
+// Executar excluirEstado
 $resultado = $objetoEstado->excluirEstado($idEstado);
-
 echo "<script>
     alert('$resultado');
     window.location.href='estados.php'; 
     </script>";
-?>

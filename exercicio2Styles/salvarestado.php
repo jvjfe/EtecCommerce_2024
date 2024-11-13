@@ -1,5 +1,5 @@
 <?php
-// Capturar os valores enviados pelo método GET
+// Capturar os valores enviados pelo método POST
 $idEstado = htmlspecialchars($_POST["campoIdEstado"]);
 $sigla = htmlspecialchars($_POST["campoSigla"]);
 $nome = htmlspecialchars($_POST["campoNome"]);
@@ -17,4 +17,3 @@ echo "<script>
     alert('$resultado');
     window.location.href='estados.php'; 
     </script>";
-?>

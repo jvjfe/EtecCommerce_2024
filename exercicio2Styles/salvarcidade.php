@@ -1,18 +1,19 @@
 <?php
-// Capturar os valores enviados pelo método GET
+// Capturar os valores enviados pelo método POST
 $idCidade = htmlspecialchars($_POST["campoIdCidade"]);
-$campoNome = htmlspecialchars($_POST["campoNome"]);
+$nome = htmlspecialchars($_POST["campoNome"]);
 $idEstado = htmlspecialchars($_POST["campoIdEstado"]);
+// Importar o conteúdo do arquivo ClasseCidade.php
 require("ClasseCidade.php");
 // Instanciar o objetoCidade
-$objetoEstado = new ClasseCidade();
-if ($idEstado == 0) {
-    $resultado = $objetoEstado->inserirCidade($nome, $idEstado);
+$objetoCidade = new ClasseCidade();
+// Executar inserirCidade ou  alterarCidade
+if ($idCidade == 0) {
+    $resultado = $objetoCidade->inserirCidade($nome, $idEstado);
 } else {
-    $resultado = $objetoEstado->alterarCidade($idCidade, $nome, $idEstado);
+    $resultado = $objetoCidade->alterarCidade($idCidade, $nome, $idEstado);
 }
 echo "<script>
     alert('$resultado');
-    window.location.href='cidades.php'; 
+    window.location.href='Cidades.php'; 
     </script>";
-?>
