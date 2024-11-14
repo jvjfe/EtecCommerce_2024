@@ -20,7 +20,7 @@
             <h1>Cidades</h1>
 
             <a href="cidade.php?idCidade=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>
@@ -77,7 +77,7 @@
             </table>
 
             <a href="cidade.php?idCidade=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>

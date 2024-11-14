@@ -19,7 +19,7 @@
         <section class="listagem">
             <h1>Estados</h1>
             <a href="estado.php?idEstado=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>
@@ -66,7 +66,7 @@
             </table>
 
             <a href="estado.php?idEstado=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>

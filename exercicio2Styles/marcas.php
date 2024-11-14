@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etec Commerce</title>
     <!-- Folha de estilos -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylesestado.css">
     <!-- Ícone da aba do navegador -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- link fontawesome -->
@@ -19,7 +19,7 @@
         <section class="listagem">
             <h1>Marcas</h1>
             <a href="marca.php?idMarca=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>
@@ -63,7 +63,7 @@
             </table>
 
             <a href="marca.php?idMarca=0">
-                <button>
+                <button class="botao">
                     NOVO
                 </button>
             </a>
