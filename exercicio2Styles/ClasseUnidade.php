@@ -1,46 +1,46 @@
 <?php
 
-class ClasseMarca
+class Classeunidade
 {
     /* Atributos */
-    private $idMarca; // Armazena o ID do marca
-    private $nome;     // Armazena o nome do marca
-    private $produtos;  // Armazena as produtos associadas ao marca
+    private $idUnidade; // Armazena o ID do unidade
+    private $nome;     // Armazena o nome do unidade
+    private $produtos;  // Armazena as produtos associadas ao unidade
 
     /* Getters */
-    // Método que retorna o ID do marca
-    public function getidMarca()
+    // Método que retorna o ID do unidade
+    public function getidUnidade()
     {
-        return $this->idMarca;
+        return $this->idUnidade;
     }
 
-    // Método que retorna o nome do marca
+    // Método que retorna o nome do unidade
     public function getNome()
     {
         return $this->nome;
     }
 
 
-    // Método que retorna as produtos associadas ao marca
+    // Método que retorna as produtos associadas ao unidade
     public function getprodutos()
     {
         return $this->produtos;
     }
 
     /* Setters */
-    // Método que define o valor do ID do marca
-    public function setidMarca($idMarca)
+    // Método que define o valor do ID do unidade
+    public function setidUnidade($idUnidade)
     {
-        $this->idMarca = $idMarca;
+        $this->idUnidade = $idUnidade;
     }
 
-    // Método que define o valor do nome do marca
+    // Método que define o valor do nome do unidade
     public function setNome($nome)
     {
         $this->nome = $nome;
     }
 
-     // Método que define as produtos associadas ao marca
+     // Método que define as produtos associadas ao unidade
     public function setprodutos($produtos)
     {
         $this->produtos = $produtos;
@@ -52,20 +52,20 @@ class ClasseMarca
 
     /* 
     Implementar os métodos do CRUD
-    C - CREATE - Insert - inserirMarca
+    C - CREATE - Insert - inserirUnidade
     R - READ - Select 
-    U - UPDATE - alterarMarca
-    D - DELETE - excluirMarca
+    U - UPDATE - alterarUnidade
+    D - DELETE - excluirUnidade
     */
 
-    /* Método inserirMarca */
-    public function inserirMarca($nome)
+    /* Método inserirUnidade */
+    public function inserirUnidade($nome)
     {
         // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
 
-        // Comando SQL para chamar a função armazenada "inserirMarca" no banco de dados
-        $comando = "SELECT inserirMarca(:nome) AS Resultado;";
+        // Comando SQL para chamar a função armazenada "inserirUnidade" no banco de dados
+        $comando = "SELECT inserirUnidade(:nome) AS Resultado;";
 
         // Prepara a consulta SQL
         $stmt  = $pdo->prepare($comando);
@@ -88,20 +88,20 @@ class ClasseMarca
         return $resultado;
     }
 
-    /* Método alterarMarca */
-    public function alterarMarca($idMarca, $nome)
+    /* Método alterarUnidade */
+    public function alterarUnidade($idUnidade, $nome)
     {
         // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
 
-        // Comando SQL para chamar a função armazenada "alterarMarca" no banco de dados
-        $comando = "SELECT alterarMarca(:idMarca,:nome) AS Resultado;";
+        // Comando SQL para chamar a função armazenada "alterarUnidade" no banco de dados
+        $comando = "SELECT alterarUnidade(:idUnidade,:nome) AS Resultado;";
 
         // Prepara a consulta SQL
         $stmt = $pdo->prepare($comando);
 
-        // Vincula os parâmetros "idMarca", "" e "nome" com os valores recebidos como argumento
-        $stmt->bindParam(":idMarca", $idMarca);
+        // Vincula os parâmetros "idUnidade", "" e "nome" com os valores recebidos como argumento
+        $stmt->bindParam(":idUnidade", $idUnidade);
         $stmt->bindParam(":nome", $nome);
 
         // Executa a consulta
@@ -119,20 +119,20 @@ class ClasseMarca
         return $resultado;
     }
 
-    /* Método excluirMarca */
-    public function excluirMarca($idMarca)
+    /* Método excluirUnidade */
+    public function excluirUnidade($idUnidade)
     {
         // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
 
-        // Comando SQL para chamar a função armazenada "excluirMarca" no banco de dados
-        $comando = "SELECT excluirMarca(:idMarca) AS Resultado;";
+        // Comando SQL para chamar a função armazenada "excluirUnidade" no banco de dados
+        $comando = "SELECT excluirUnidade(:idUnidade) AS Resultado;";
 
         // Prepara a consulta SQL
         $stmt = $pdo->prepare($comando);
 
-        // Vincula o parâmetro "idMarca" com o valor recebido como argumento
-        $stmt->bindParam(":idMarca", $idMarca);
+        // Vincula o parâmetro "idUnidade" com o valor recebido como argumento
+        $stmt->bindParam(":idUnidade", $idUnidade);
 
         // Executa a consulta
         $stmt->execute();
@@ -149,33 +149,33 @@ class ClasseMarca
         return $resultado;
     }
 
-    /* Método consultarMarca */
-    public function consultarMarca($idMarca)
+    /* Método consultarUnidade */
+    public function consultarUnidade($idUnidade)
     {
         // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
         // Variável $consulta o select a ser executado
-        $consulta="SELECT * FROM viewMarcas WHERE idMarca=:idMarca";
+        $consulta="SELECT * FROM viewUnidades WHERE idUnidade=:idUnidade";
         // Preparar para executar a consulta
         $stmt = $pdo->prepare($consulta);
         // Definir o parâmetro
-        $stmt->bindParam(":idMarca",$idMarca);
+        $stmt->bindParam(":idUnidade",$idUnidade);
         // Executar o comando
         $stmt->execute();
         foreach($stmt as $linha){
-            $this->idMarca = $linha["IDMARCA"];
+            $this->idUnidade = $linha["IDUNIDADE"];
             $this->nome = $linha["NOME"];
 			$this->produtos = $linha["PRODUTOS"];
         }
     }
 
-    /* Método listarMarcas */
-    public function listarMarcas()
+    /* Método listarUnidades */
+    public function listarUnidades()
     {
         // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
         // Variável $consulta o select a ser executado
-        $consulta="SELECT * FROM viewMarcas";
+        $consulta="SELECT * FROM viewUnidades";
         // Preparar para executar a consulta
         $stmt = $pdo->prepare($consulta);
         // Executar o comando

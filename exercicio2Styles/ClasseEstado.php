@@ -166,29 +166,36 @@ class ClasseEstado
     /* Método consultarEstado */
     public function consultarEstado($idEstado)
     {
+        // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
-
-        $consulta = "SELECT * FROM viewEstados WHERE IDESTADO=:idEstado";
-
+        // Variável $consulta o select a ser executado
+        $consulta="SELECT * FROM viewEstados WHERE IDESTADO=:idEstado";
+        // Preparar para executar a consulta
         $stmt = $pdo->prepare($consulta);
-
-        $stmt->bindParam("idEstado", $idEstado);
-
+        // Definir o parâmetro
+        $stmt->bindParam(":idEstado",$idEstado);
+        // Executar o comando
         $stmt->execute();
-        foreach ($stmt as $linha) {
+        foreach($stmt as $linha){
             $this->idEstado = $linha["IDESTADO"];
             $this->nome = $linha["NOME"];
             $this->sigla = $linha["SIGLA"];
+			$this->cidades = $linha["CIDADES"];
         }
     }
 
     /* Método listarEstados */
     public function listarEstados()
     {
+        // Requer o arquivo de conexão com o banco de dados
         require("conexaobd.php");
-        $consulta = "SELECT * FROM viewEstados";
+        // Variável $consulta o select a ser executado
+        $consulta="SELECT * FROM viewEstados";
+        // Preparar para executar a consulta
         $stmt = $pdo->prepare($consulta);
+        // Executar o comando
         $stmt->execute();
-        return  $stmt;
+        // Retornar o resultado da consulta
+        return $stmt;
     }
 }

@@ -1,7 +1,4 @@
 <?php
-    if(!isset($_GET["idEstado"])){
-        header("location:estados.php");
-    }
     // Capturar o valor do parâmetro idEstado
     $idEstado = htmlspecialchars($_GET["idEstado"]);
     // Inicialiar as variáveis
@@ -20,7 +17,6 @@
         $nome = $objetoEstado->getNome();
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -42,15 +38,11 @@
         <section class="formulario">
             <h1>Estado</h1>
             <form action="salvarestado.php" class="formulario-form" method="POST">
-                <label for="campoSigla">
 
-                </label>
-                <input type="text"
+                <input type="hidden"
                     id="campoIdEstado"
                     name="campoIdEstado"
-                    value="<?php echo $idEstado;?>"
-                    placeholder="ID">
-                    
+                    value="<?php echo $idEstado; ?>">
 
                 <label for="campoSigla">
                     Sigla
@@ -79,10 +71,9 @@
                     required>
 
                 <input type="submit"
-                value="Salvar"
-                id="botaoSalvar"
-                name="botaoSalvar"
-                class="submit-button">
+                    value="Salvar"
+                    id="botaoSalvar"
+                    name="botaoSalvar">
 
             </form>
 
@@ -97,21 +88,21 @@
 
 <script>
     // Função para validar o campoSigla
-    function validarSigla(event){
+    function validarSigla(event) {
 
         const inputSigla = event.target;
         // Armazena a referência ao elemento de entrada que 
-		// gerou o evento (campo de texto da sigla) na variável 'inputSigla'.
-    
+        // gerou o evento (campo de texto da sigla) na variável 'inputSigla'.
+
         const regex = /^[A-Za-z]{2}$/;
         // Define uma expressão regular (regex) que só permite dois caracteres 
-		// alfabéticos (de 'A' a 'Z', tanto maiúsculas quanto minúsculas).  
+        // alfabéticos (de 'A' a 'Z', tanto maiúsculas quanto minúsculas).  
 
         // Converter para maiúsculas
         inputSigla.value = inputSigla.value.toUpperCase();
         // Converte o valor digitado no campo 'inputSigla' 
-		//para letras maiúsculas e o atribui de volta ao campo. 
-        
+        //para letras maiúsculas e o atribui de volta ao campo. 
+
         // Validar se tem apenas duas letras
         if (!regex.test(inputSigla.value)) {
             // Verifica se o valor do campo não corresponde ao padrão da regex. 
@@ -122,12 +113,12 @@
         } else {
             inputSigla.setCustomValidity("");
             // Se o valor estiver correto, limpa qualquer mensagem de 
-			//erro anterior, permitindo a submissão do formulário.
-        }        
+            //erro anterior, permitindo a submissão do formulário.
+        }
     }
 
     // Função para validar o campoNome
-    function validarNome(event){
+    function validarNome(event) {
 
         const inputNome = event.target;
         // Expressão regular que permite letras (maiúsculas e minúsculas), incluindo acentuação, e espaço

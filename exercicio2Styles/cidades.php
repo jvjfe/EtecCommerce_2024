@@ -61,6 +61,10 @@
                                         EXCLUIR
                                     </button>
                                 </a>
+
+                                <a href="bkpcidade.php?idCidade=<?php echo $idCidade; ?>"><button>LOG</button></a>
+
+
                             </td>
                         </tr>
                     <?php
