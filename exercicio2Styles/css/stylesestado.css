@@ -26,6 +26,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: var(--fontFamily);
+    justify-content: center;
 }
 
 header {
@@ -149,8 +150,9 @@ footer {
 
 main {
     background-color: var(--corFundoDoMain);
-    padding-top: 30px;
+    padding-top: 20px;
     padding-bottom: 30px;
+
 }
 
 .cards {
@@ -322,21 +324,20 @@ tr:hover {
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
-    background-color: #333; /* Cor inicial preta */
+    background-color: #333;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Transição suave */
-  }
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
-  /* Efeito ao passar o mouse */
-  .botao:hover {
-    background-color: #666; /* Cor quando passa o mouse (cinza) */
-    transform: translateY(-3px); /* Leve elevação para efeito de profundidade */
-  }
+.botao:hover {
+    background-color: #666;
+    transform: translateY(-3px);
+}
 
-  /* Efeito de clique */
-  .botao:active {
-    transform: translateY(1px); /* Quando clicar, o botão parece "afundar" */
-  }
+
+.botao:active {
+    transform: translateY(1px);
+}

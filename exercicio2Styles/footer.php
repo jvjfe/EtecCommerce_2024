@@ -1,6 +1,7 @@
 <footer>
     <section id="sobre">
         <h3>Sobre o Etec Commerce</h3>
+        <br>
         <nav>
             <a href="" class="link-footer">Conheça nossa história</a>
             <a href="" class="link-footer">Fale Conosco</a>
@@ -12,6 +13,7 @@
     </section>
     <section id="paravoce">
         <h3>Sugestões para você</h3>
+        <br>
         <nav>
             <a href="" class="link-footer">Participe do CHAT Etec Commerce</a>
             <a href="" class="link-footer">Segurança digital</a>
@@ -23,6 +25,7 @@
     </section>
     <section id="redessociais">
         <h3>Redes Sociais</h3>
+        <br>
         <nav>
             <a href="" class="link-footer">
                 <i class="fa-brands fa-square-instagram"></i>

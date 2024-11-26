@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etec Commerce</title>
     <!-- Folha de estilos -->
-    <link rel="stylesheet" href="./css/stylesestado.css">
+    <link rel="stylesheet" href="./css/style.css">
     <!-- Ícone da aba do navegador -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- link fontawesome -->
