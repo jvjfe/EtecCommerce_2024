@@ -16,59 +16,61 @@
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="listagem">
-            <h1>Marcas</h1>
-            <a href="marca.php?idMarca=0">
-                <button class="botao">
-                    NOVO
-                </button>
-            </a>
+        <div class="alinhamento">
+            <section class="listagem">
+                <h1>Marcas</h1>
+                <a href="marca.php?idMarca=0">
+                    <button class="botao">
+                        NOVO
+                    </button>
+                </a>
 
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>NOME</th>
-                        <th>PRODUTOS</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>NOME</th>
+                            <th>PRODUTOS</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         // Requer o arquivo
                         require("ClasseMarca.php");
                         // Instanciar o $objetoMarca a partir da ClasseMarca
                         $objetoMarca = new ClasseMarca();
                         // Executar o método listarMarcas() armazenando na variável $listagem
                         $listagem = $objetoMarca->listarMarcas();
-                        foreach($listagem as $linha){
+                        foreach ($listagem as $linha) {
                             $idMarca = $linha["IDMARCA"];
                             $nome = $linha["NOME"];
                             $produtos = $linha["PRODUTOS"];
-                    ?>
-                    <tr>
-                        <td><?php echo $idMarca; ?></td>
-                        <td><?php echo $nome; ?></td>
-                        <td><?php echo $produtos; ?></td>
-                        <td>
-                            <a href="marca.php?idMarca=<?php echo $idMarca;?>"><button>ALTERAR</button></a>
-                            <a href="excluirmarca.php?idMarca=<?php echo $idMarca;?>"><button>EXCLUIR</button></a>
-                            <a href="bkpmarca.php?idMarca=<?php echo $idMarca;?>"><button>LOG</button></a>
-                        </td>
-                    </tr>
-                    <?php 
+                        ?>
+                            <tr>
+                                <td><?php echo $idMarca; ?></td>
+                                <td><?php echo $nome; ?></td>
+                                <td><?php echo $produtos; ?></td>
+                                <td>
+                                    <a href="marca.php?idMarca=<?php echo $idMarca; ?>"><button>ALTERAR</button></a>
+                                    <a href="excluirmarca.php?idMarca=<?php echo $idMarca; ?>"><button>EXCLUIR</button></a>
+                                    <a href="bkpmarca.php?idMarca=<?php echo $idMarca; ?>"><button>LOG</button></a>
+                                </td>
+                            </tr>
+                        <?php
                         }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
 
-            <a href="marca.php?idMarca=0">
-                <button class="botao">
-                    NOVO
-                </button>
-            </a>
+                <a href="marca.php?idMarca=0">
+                    <button class="botao">
+                        NOVO
+                    </button>
+                </a>
 
-        </section>       
+            </section>
+        </div>
     </main>
     <?php require("footer.php"); ?>
 </body>

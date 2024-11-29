@@ -1,20 +1,20 @@
 <?php
-    // Capturar o valor do parâmetro idUnidade
-    $idUnidade = htmlspecialchars($_GET["idUnidade"]);
-    // Inicialiar as variáveis
-    $sigla = "";
-    $nome = "";
-    // Se necessário, consultarUnidade para obter os valores das variáveis
-    if($idUnidade!=0){
-        // Requer ClasseUnidade.php
-        require("ClasseUnidade.php");
-        // Instanciar o $objetoUnidade a partir da ClasseUnidade
-        $objetoUnidade =  new ClasseUnidade();
-        // Executar o método consultarUnidade
-        $objetoUnidade->consultarUnidade($idUnidade);
-        // As variáveis recebem os valores dos atributos do $objetoUnidade
-        $nome = $objetoUnidade->getNome();
-    }
+// Capturar o valor do parâmetro idUnidade
+$idUnidade = htmlspecialchars($_GET["idUnidade"]);
+// Inicialiar as variáveis
+$sigla = "";
+$nome = "";
+// Se necessário, consultarUnidade para obter os valores das variáveis
+if ($idUnidade != 0) {
+    // Requer ClasseUnidade.php
+    require("ClasseUnidade.php");
+    // Instanciar o $objetoUnidade a partir da ClasseUnidade
+    $objetoUnidade =  new ClasseUnidade();
+    // Executar o método consultarUnidade
+    $objetoUnidade->consultarUnidade($idUnidade);
+    // As variáveis recebem os valores dos atributos do $objetoUnidade
+    $nome = $objetoUnidade->getNome();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,36 +34,38 @@
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="formulario">
-            <h1>Unidade</h1>
-            <form action="salvarunidade.php" class="formulario-form" method="POST">
+        <div class="alinhamento2">
+            <section class="formulario">
+                <h1>Unidade</h1>
+                <form action="salvarunidade.php" class="formulario-form" method="POST">
 
-                <input type="hidden"
-                    id="campoIdUnidade"
-                    name="campoIdUnidade"
-                    value="<?php echo $idUnidade; ?>">
+                    <input type="hidden"
+                        id="campoIdUnidade"
+                        name="campoIdUnidade"
+                        value="<?php echo $idUnidade; ?>">
 
-                <label for="campoNome">
-                    Nome do Unidade
-                </label>
+                    <label for="campoNome">
+                        Nome do Unidade
+                    </label>
 
-                <input type="text"
-                    id="campoNome"
-                    name="campoNome"
-                    maxlength="20"
-                    placeholder="Nome do Unidade"
-                    oninput="validarNome(event)"
-                    value="<?php echo $nome;?>"
-                    required>
+                    <input type="text"
+                        id="campoNome"
+                        name="campoNome"
+                        maxlength="20"
+                        placeholder="Nome do Unidade"
+                        oninput="validarNome(event)"
+                        value="<?php echo $nome; ?>"
+                        required>
 
-                <input type="submit"
-                    value="Salvar"
-                    id="botaoSalvar"
-                    name="botaoSalvar">
+                    <input type="submit"
+                        value="Salvar"
+                        id="botaoSalvar"
+                        name="botaoSalvar">
 
-            </form>
+                </form>
 
-        </section>
+            </section>
+        </div>
     </main>
 
     <?php require("footer.php"); ?>

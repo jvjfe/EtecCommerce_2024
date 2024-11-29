@@ -1,20 +1,20 @@
 <?php
-    // Capturar o valor do parâmetro idMarca
-    $idMarca = htmlspecialchars($_GET["idMarca"]);
-    // Inicialiar as variáveis
-    $sigla = "";
-    $nome = "";
-    // Se necessário, consultarMarca para obter os valores das variáveis
-    if($idMarca!=0){
-        // Requer ClasseMarca.php
-        require("ClasseMarca.php");
-        // Instanciar o $objetoMarca a partir da ClasseMarca
-        $objetoMarca =  new ClasseMarca();
-        // Executar o método consultarMarca
-        $objetoMarca->consultarMarca($idMarca);
-        // As variáveis recebem os valores dos atributos do $objetoMarca
-        $nome = $objetoMarca->getNome();
-    }
+// Capturar o valor do parâmetro idMarca
+$idMarca = htmlspecialchars($_GET["idMarca"]);
+// Inicialiar as variáveis
+$sigla = "";
+$nome = "";
+// Se necessário, consultarMarca para obter os valores das variáveis
+if ($idMarca != 0) {
+    // Requer ClasseMarca.php
+    require("ClasseMarca.php");
+    // Instanciar o $objetoMarca a partir da ClasseMarca
+    $objetoMarca =  new ClasseMarca();
+    // Executar o método consultarMarca
+    $objetoMarca->consultarMarca($idMarca);
+    // As variáveis recebem os valores dos atributos do $objetoMarca
+    $nome = $objetoMarca->getNome();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etec Commerce</title>
     <!-- Folha de estilos -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylesestado.css">
     <!-- Ícone da aba do navegador -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- link fontawesome -->
@@ -34,36 +34,39 @@
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="formulario">
-            <h1>Marca</h1>
-            <form action="salvarmarca.php" class="formulario-form" method="POST">
+        <div class="alinhamento2">
+            <section class="formulario">
+                <h1>Marca</h1>
+                <form action="salvarmarca.php" class="formulario-form" method="POST">
 
-                <input type="hidden"
-                    id="campoIdMarca"
-                    name="campoIdMarca"
-                    value="<?php echo $idMarca; ?>">
+                    <input type="hidden"
+                        id="campoIdMarca"
+                        name="campoIdMarca"
+                        value="<?php echo $idMarca; ?>">
 
-                <label for="campoNome">
-                    Nome do Marca
-                </label>
+                    <label for="campoNome">
+                        Nome do Marca
+                    </label>
 
-                <input type="text"
-                    id="campoNome"
-                    name="campoNome"
-                    maxlength="50"
-                    placeholder="Nome do Marca"
-                    oninput="validarNome(event)"
-                    value="<?php echo $nome;?>"
-                    required>
+                    <input type="text"
+                        id="campoNome"
+                        name="campoNome"
+                        maxlength="50"
+                        placeholder="Nome do Marca"
+                        oninput="validarNome(event)"
+                        value="<?php echo $nome; ?>"
+                        required>
 
-                <input type="submit"
-                    value="Salvar"
-                    id="botaoSalvar"
-                    name="botaoSalvar">
+                    <input type="submit"
+                        value="Salvar"
+                        id="botaoSalvar"
+                        name="botaoSalvar"
+                        class="botaoSalvar">
 
-            </form>
+                </form>
 
-        </section>
+            </section>
+        </div>
     </main>
 
     <?php require("footer.php"); ?>

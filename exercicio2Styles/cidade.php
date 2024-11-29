@@ -24,7 +24,7 @@ if ($idCidade != 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etec Commerce</title>
     <!-- Folha de estilos -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/stylesestado.css">
     <!-- Ícone da aba do navegador -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- link fontawesome -->
@@ -34,54 +34,56 @@ if ($idCidade != 0) {
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="formulario">
-            <h1>Cidade</h1>
-            <form action="salvarcidade.php" method="POST" class="formulario-form">
+        <div class="alinhamento2">
+            <section class="formulario">
+                <h1>Cidade</h1>
+                <form action="salvarcidade.php" method="POST" class="formulario-form">
 
-                <input type="hidden"
-                    id="campoIdCidade"
-                    name="campoIdCidade"
-                    value="<?php echo $idCidade; ?>">
+                    <input type="hidden"
+                        id="campoIdCidade"
+                        name="campoIdCidade"
+                        value="<?php echo $idCidade; ?>">
 
-                <label for="campoNome">Nome da Cidade *</label>
-                <input type="text"
-                    id="campoNome"
-                    name="campoNome"
-                    maxlength="50"
-                    placeholder="Nome da Cidade"
-                    oninput="validarNome(event)"
-                    value="<?php echo $nome; ?>"
-                    required>
+                    <label for="campoNome">Nome da Cidade *</label>
+                    <input type="text"
+                        id="campoNome"
+                        name="campoNome"
+                        maxlength="50"
+                        placeholder="Nome da Cidade"
+                        oninput="validarNome(event)"
+                        value="<?php echo $nome; ?>"
+                        required>
 
-                <label for="campoIdEstado">UF</label>
-                <select id="campoIdEstado" name="campoIdEstado">
-                    <?php
-                    /* Importar o arquivo ClasseEstado.php */
-                    require("ClasseEstado.php");
-                    /* Instanciar o $objetoEstado */
-                    $objetoEstado = new ClasseEstado();
-                    /* Executar o método listarEstados() */
-                    $listagem = $objetoEstado->listarEstados();
-                    foreach ($listagem as $registro) {
-                        $idEstadoOption = $registro["IDESTADO"];
-                        $nomeOption = $registro["NOME"];
-                        $selecionado = ($idEstado == $idEstadoOption) ? "SELECTED" : "";
-                    ?>
-                        <option value="<?php echo $idEstadoOption; ?>" <?php echo $selecionado; ?>>
-                            <?php echo $nomeOption; ?>
-                        </option>
-                    <?php
-                    }
-                    ?>
-                </select>
+                    <label for="campoIdEstado">UF</label>
+                    <select id="campoIdEstado" name="campoIdEstado">
+                        <?php
+                        /* Importar o arquivo ClasseEstado.php */
+                        require("ClasseEstado.php");
+                        /* Instanciar o $objetoEstado */
+                        $objetoEstado = new ClasseEstado();
+                        /* Executar o método listarEstados() */
+                        $listagem = $objetoEstado->listarEstados();
+                        foreach ($listagem as $registro) {
+                            $idEstadoOption = $registro["IDESTADO"];
+                            $nomeOption = $registro["NOME"];
+                            $selecionado = ($idEstado == $idEstadoOption) ? "SELECTED" : "";
+                        ?>
+                            <option value="<?php echo $idEstadoOption; ?>" <?php echo $selecionado; ?>>
+                                <?php echo $nomeOption; ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
 
-                <input type="submit"
-                    value="Salvar"
-                    id="botaoSalvar"
-                    name="botaoSalvar">                
+                    <input type="submit"
+                        value="Salvar"
+                        id="botaoSalvar"
+                        name="botaoSalvar">
 
-            </form>
-        </section>
+                </form>
+            </section>
+        </div>
     </main>
 
     <?php require("footer.php"); ?>

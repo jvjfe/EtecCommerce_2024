@@ -37,91 +37,93 @@ if ($idProduto != 0) {
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="formulario">
-            <h1>Produto</h1>
-            <form action="salvarproduto.php" method="POST" class="formulario-form" style="padding: 20px 40px 5px;" >
+        <div class="alinhamento2">
+            <section class="formulario">
+                <h1>Produto</h1>
+                <form action="salvarproduto.php" method="POST" class="formulario-form" style="padding: 20px 40px 5px;">
 
-                <input type="hidden"
-                    id="campoIdProduto"
-                    name="campoIdProduto"
-                    value="<?php echo $idProduto; ?>">
+                    <input type="hidden"
+                        id="campoIdProduto"
+                        name="campoIdProduto"
+                        value="<?php echo $idProduto; ?>">
 
-                <label for="campoNome" style="margin-top: 15px;">Nome do Produto *</label>
-                <input type="text"
-                    id="campoNome"
-                    name="campoNome"
-                    maxlength="50"
-                    placeholder="Nome da Produto"
-                    oninput="validarNome(event)"
-                    value="<?php echo $nome; ?>"
-                    required>
+                    <label for="campoNome" style="margin-top: 15px;">Nome do Produto *</label>
+                    <input type="text"
+                        id="campoNome"
+                        name="campoNome"
+                        maxlength="50"
+                        placeholder="Nome da Produto"
+                        oninput="validarNome(event)"
+                        value="<?php echo $nome; ?>"
+                        required>
 
-                <label for="campoPrecoCompra">Preço de Compra *</label>
-                <input type="number"
-                    id="campoPrecoCompra"
-                    name="campoPrecoCompra"
-                    min="0"
-                    step="0.01"
-                    placeholder="Preço de Compra"
-                    value="<?php echo $precoCompra; ?>"
-                    required>
+                    <label for="campoPrecoCompra">Preço de Compra *</label>
+                    <input type="number"
+                        id="campoPrecoCompra"
+                        name="campoPrecoCompra"
+                        min="0"
+                        step="0.01"
+                        placeholder="Preço de Compra"
+                        value="<?php echo $precoCompra; ?>"
+                        required>
 
                     <label for="campoMargemLucro">Margem de Lucro *</label>
-                <input type="number"
-                    id="campoMargemLucro"
-                    name="campoMargemLucro"
-                    min="0"
-                    step="0.01"
-                    placeholder="Margem de Lucro"
-                    value="<?php echo $margemLucro; ?>"
-                    required>                    
+                    <input type="number"
+                        id="campoMargemLucro"
+                        name="campoMargemLucro"
+                        min="0"
+                        step="0.01"
+                        placeholder="Margem de Lucro"
+                        value="<?php echo $margemLucro; ?>"
+                        required>
 
-                <label for="campoIdMarca">Marca</label>
-                <select id="campoIdMarca" name="campoIdMarca">
-                    <?php
-                    require("ClasseMarca.php");
-                    $objetoMarca = new ClasseMarca();
-                    $listagem = $objetoMarca->listarMarcas();
-                    foreach ($listagem as $registro) {
-                        $idMarcaOption = $registro["IDMARCA"];
-                        $nomeOption = $registro["NOME"];
-                        $selecionado = ($idMarca == $idMarcaOption) ? "SELECTED" : "";
-                    ?>
-                        <option value="<?php echo $idMarcaOption; ?>" <?php echo $selecionado; ?>>
-                            <?php echo $nomeOption; ?>
-                        </option>
-                    <?php
-                    }
-                    ?>
-                </select>
+                    <label for="campoIdMarca">Marca</label>
+                    <select id="campoIdMarca" name="campoIdMarca">
+                        <?php
+                        require("ClasseMarca.php");
+                        $objetoMarca = new ClasseMarca();
+                        $listagem = $objetoMarca->listarMarcas();
+                        foreach ($listagem as $registro) {
+                            $idMarcaOption = $registro["IDMARCA"];
+                            $nomeOption = $registro["NOME"];
+                            $selecionado = ($idMarca == $idMarcaOption) ? "SELECTED" : "";
+                        ?>
+                            <option value="<?php echo $idMarcaOption; ?>" <?php echo $selecionado; ?>>
+                                <?php echo $nomeOption; ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
 
-                <label for="campoIdUnidade">Unidade</label>
-                <select id="campoIdUnidade" name="campoIdUnidade">
-                    <?php
-                    require("ClasseUnidade.php");
-                    $objetoUnidade = new ClasseUnidade();
-                    $listagem = $objetoUnidade->listarUnidades();
-                    foreach ($listagem as $registro) {
-                        $idUnidadeOption = $registro["IDUNIDADE"];
-                        $nomeOption = $registro["NOME"];
-                        $selecionado = ($idUnidade == $idUnidadeOption) ? "SELECTED" : "";
-                    ?>
-                        <option value="<?php echo $idUnidadeOption; ?>" <?php echo $selecionado; ?>>
-                            <?php echo $nomeOption; ?>
-                        </option>
-                    <?php
-                    }
-                    ?>
-                </select>
+                    <label for="campoIdUnidade">Unidade</label>
+                    <select id="campoIdUnidade" name="campoIdUnidade">
+                        <?php
+                        require("ClasseUnidade.php");
+                        $objetoUnidade = new ClasseUnidade();
+                        $listagem = $objetoUnidade->listarUnidades();
+                        foreach ($listagem as $registro) {
+                            $idUnidadeOption = $registro["IDUNIDADE"];
+                            $nomeOption = $registro["NOME"];
+                            $selecionado = ($idUnidade == $idUnidadeOption) ? "SELECTED" : "";
+                        ?>
+                            <option value="<?php echo $idUnidadeOption; ?>" <?php echo $selecionado; ?>>
+                                <?php echo $nomeOption; ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
 
-                <input type="submit"
-                    value="Salvar"
-                    id="botaoSalvar"
-                    name="botaoSalvar"
-                    style="height: 150px;">
+                    <input type="submit"
+                        value="Salvar"
+                        id="botaoSalvar"
+                        name="botaoSalvar"
+                        style="height: 150px;">
 
-            </form>
-        </section>
+                </form>
+            </section>
+        </div>
     </main>
 
     <?php require("footer.php"); ?>

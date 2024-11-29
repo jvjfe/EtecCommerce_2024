@@ -1,21 +1,21 @@
 <?php
-    // Capturar o valor do parâmetro idEstado
-    $idEstado = htmlspecialchars($_GET["idEstado"]);
-    // Inicialiar as variáveis
-    $sigla = "";
-    $nome = "";
-    // Se necessário, consultarEstado para obter os valores das variáveis
-    if($idEstado!=0){
-        // Requer ClasseEstado.php
-        require("ClasseEstado.php");
-        // Instanciar o $objetoEstado a partir da ClasseEstado
-        $objetoEstado =  new ClasseEstado();
-        // Executar o método consultarEstado
-        $objetoEstado->consultarEstado($idEstado);
-        // As variáveis recebem os valores dos atributos do $objetoEstado
-        $sigla = $objetoEstado->getSigla();
-        $nome = $objetoEstado->getNome();
-    }
+// Capturar o valor do parâmetro idEstado
+$idEstado = htmlspecialchars($_GET["idEstado"]);
+// Inicialiar as variáveis
+$sigla = "";
+$nome = "";
+// Se necessário, consultarEstado para obter os valores das variáveis
+if ($idEstado != 0) {
+    // Requer ClasseEstado.php
+    require("ClasseEstado.php");
+    // Instanciar o $objetoEstado a partir da ClasseEstado
+    $objetoEstado =  new ClasseEstado();
+    // Executar o método consultarEstado
+    $objetoEstado->consultarEstado($idEstado);
+    // As variáveis recebem os valores dos atributos do $objetoEstado
+    $sigla = $objetoEstado->getSigla();
+    $nome = $objetoEstado->getNome();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -35,49 +35,51 @@
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="formulario">
-            <h1>Estado</h1>
-            <form action="salvarestado.php" class="formulario-form" method="POST">
+        <div class="alinhamento2">
+            <section class="formulario">
+                <h1>Estado</h1>
+                <form action="salvarestado.php" class="formulario-form" method="POST">
 
-                <input type="hidden"
-                    id="campoIdEstado"
-                    name="campoIdEstado"
-                    value="<?php echo $idEstado; ?>">
+                    <input type="hidden"
+                        id="campoIdEstado"
+                        name="campoIdEstado"
+                        value="<?php echo $idEstado; ?>">
 
-                <label for="campoSigla">
-                    Sigla
-                </label>
+                    <label for="campoSigla">
+                        Sigla
+                    </label>
 
-                <input type="text"
-                    id="campoSigla"
-                    name="campoSigla"
-                    maxlength="2"
-                    placeholder="Sigla do Estado"
-                    oninput="validarSigla(event)"
-                    value="<?php echo $sigla;?>"
-                    required>
+                    <input type="text"
+                        id="campoSigla"
+                        name="campoSigla"
+                        maxlength="2"
+                        placeholder="Sigla do Estado"
+                        oninput="validarSigla(event)"
+                        value="<?php echo $sigla; ?>"
+                        required>
 
-                <label for="campoNome">
-                    Nome do Estado
-                </label>
+                    <label for="campoNome">
+                        Nome do Estado
+                    </label>
 
-                <input type="text"
-                    id="campoNome"
-                    name="campoNome"
-                    maxlength="50"
-                    placeholder="Nome do Estado"
-                    oninput="validarNome(event)"
-                    value="<?php echo $nome;?>"
-                    required>
+                    <input type="text"
+                        id="campoNome"
+                        name="campoNome"
+                        maxlength="50"
+                        placeholder="Nome do Estado"
+                        oninput="validarNome(event)"
+                        value="<?php echo $nome; ?>"
+                        required>
 
-                <input type="submit"
-                    value="Salvar"
-                    id="botaoSalvar"
-                    name="botaoSalvar">
+                    <input type="submit"
+                        value="Salvar"
+                        id="botaoSalvar"
+                        name="botaoSalvar">
 
-            </form>
+                </form>
 
-        </section>
+            </section>
+        </div>
     </main>
 
     <?php require("footer.php"); ?>

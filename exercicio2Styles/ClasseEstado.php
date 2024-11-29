@@ -7,7 +7,6 @@ class ClasseEstado
     private $nome;     // Armazena o nome do estado
     private $sigla;    // Armazena a sigla do estado
     private $cidades;  // Armazena as cidades associadas ao estado
-
     /* Getters */
     // Método que retorna o ID do estado
     public function getIdEstado()

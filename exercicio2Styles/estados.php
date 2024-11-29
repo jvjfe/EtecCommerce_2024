@@ -16,62 +16,64 @@
 <body>
     <?php require("header.php"); ?>
     <main>
-        <section class="listagem">
-            <h1>Estados</h1>
-            <a href="estado.php?idEstado=0">
-                <button class="botao">
-                    NOVO
-                </button>
-            </a>
+        <div class="alinhamento">
+            <section class="listagem">
+                <h1>Estados</h1>
+                <a href="estado.php?idEstado=0">
+                    <button class="botao">
+                        NOVO
+                    </button>
+                </a>
 
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>SIGLA</th>
-                        <th>NOME</th>
-                        <th>CIDADES</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>SIGLA</th>
+                            <th>NOME</th>
+                            <th>CIDADES</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
                         // Requer o arquivo
                         require("ClasseEstado.php");
                         // Instanciar o $objetoEstado a partir da ClasseEstado
                         $objetoEstado = new ClasseEstado();
                         // Executar o método listarEstados() armazenando na variável $listagem
                         $listagem = $objetoEstado->listarEstados();
-                        foreach($listagem as $linha){
+                        foreach ($listagem as $linha) {
                             $idEstado = $linha["IDESTADO"];
                             $nome = $linha["NOME"];
                             $sigla = $linha["SIGLA"];
-                            $cidades = $linha["CIDADES"];
-                    ?>
-                    <tr>
-                        <td><?php echo $idEstado; ?></td>
-                        <td><?php echo $sigla; ?></td>
-                        <td><?php echo $nome; ?></td>
-                        <td><?php echo $cidades; ?></td>
-                        <td>
-                            <a href="estado.php?idEstado=<?php echo $idEstado;?>"><button>ALTERAR</button></a>
-                            <a href="excluirestado.php?idEstado=<?php echo $idEstado;?>"><button>EXCLUIR</button></a>
-                            <a href="bkpestado.php?idEstado=<?php echo $idEstado;?>"><button>LOG</button></a>
-                        </td>
-                    </tr>
-                    <?php 
+                            $cidades = $linha["CIDADE"];
+                        ?>
+                            <tr>
+                                <td><?php echo $idEstado; ?></td>
+                                <td><?php echo $sigla; ?></td>
+                                <td><?php echo $nome; ?></td>
+                                <td><?php echo $cidades; ?></td>
+                                <td>
+                                    <a href="estado.php?idEstado=<?php echo $idEstado; ?>"><button>ALTERAR</button></a>
+                                    <a href="excluirestado.php?idEstado=<?php echo $idEstado; ?>"><button>EXCLUIR</button></a>
+                                    <a href="bkpestado.php?idEstado=<?php echo $idEstado; ?>"><button>LOG</button></a>
+                                </td>
+                            </tr>
+                        <?php
                         }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
 
-            <a href="estado.php?idEstado=0">
-                <button class="botao">
-                    NOVO
-                </button>
-            </a>
+                <a href="estado.php?idEstado=0">
+                    <button class="botao">
+                        NOVO
+                    </button>
+                </a>
 
-        </section>       
+            </section>
+        </div>
     </main>
     <?php require("footer.php"); ?>
 </body>

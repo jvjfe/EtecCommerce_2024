@@ -1,20 +1,20 @@
 :root {
-    --corFundoDoHeader: #000000;
+    --corFundoDoHeader: #290091;
     --corFonteDoHeader: #ffffff;
     --corHoverLinkDoHeader: #c1c1c1;
 
     --corFundoDoMain: #F5F5F5;
-    --corFonteDoMain: #000000;
-    --corBordaDoCard: #4F4F4F;
+    --corFonteDoMain: #290091;
+    --corBordaDoCard: #3b00d2;
     --corHoverDoCard: #DCDCDC;
-    --corFonteDoCard: #4F4F4F;
-    --corFundoBotaoDoCard: #4F4F4F;
+    --corFonteDoCard: #3b00d2;
+    --corFundoBotaoDoCard: #3b00d2;
     --corFonteDoBotaoDoCard: #F5F5F5;
 
 
-    --corFundoDoFooter: #4F4F4F;
+    --corFundoDoFooter: #3b00d2;
     --corFonteDoFooter: #DCDCDC;
-    --corHoverLinkDoFooter: #808080;
+    --corHoverLinkDoFooter: #3b00d2;
 
 
     --fontFamily: Verdana, Geneva, Tahoma, sans-serif;
@@ -38,7 +38,7 @@ header {
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    border-bottom: 3px solid var(--corFonteDoHeader);
+    overflow: hidden;
 }
 
 .logo {
@@ -48,6 +48,7 @@ header {
     justify-content: space-between;
     gap: 10px;
     color: var(--corFonteDoHeader);
+    overflow: hidden;
 }
 
 .logo i {
@@ -66,6 +67,7 @@ header {
     border-bottom: 2px solid transparent;
     border-top: 2px solid transparent;
     transition: all 1s ease;
+    overflow: hidden;
 }
 
 .navegacao nav a:hover {
@@ -74,6 +76,7 @@ header {
     color: var(--corFonteDoFooter);
     font-size: 12px;
     padding: 8px 8px 8px 8px;
+    overflow: hidden;
 }
 
 
@@ -87,13 +90,14 @@ header {
     transition: all 1s ease;
     border-radius: 5px;
     transition: all 1s ease;
-
+    overflow: hidden;
 }
 
 .login button:hover {
     background-color: var(--corFonteDoHeader);
     color: var(--corFundoDoHeader);
     border: 2px solid transparent;
+    overflow: hidden;
 }
 
 footer {
@@ -105,6 +109,7 @@ footer {
     justify-content: space-around;
     padding-top: 20px;
     padding-bottom: 20px;
+    overflow: hidden;
 
 }
 
@@ -149,10 +154,15 @@ footer {
 }
 
 main {
-    background-color: var(--corFundoDoMain);
+
     padding-top: 20px;
     padding-bottom: 30px;
-
+    overflow: hidden;
+    background: linear-gradient(to bottom,
+            #290091,
+            #66ccff,
+            #3b00d2
+        );
 }
 
 .cards {
@@ -229,16 +239,12 @@ main {
     border: 2px solid var(--corFundoBotaoDoCard);
 }
 
-h1 {
-    margin-left: 440px;
-}
-
 form {
     justify-content: center;
+    color: white;
     width: 350px;
     height: 350px;
-    border: 2px solid black;
-    background-color: white;
+    border: 2px solid #290091;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -289,22 +295,22 @@ table {
     border-collapse: collapse;
     width: 80%;
     margin: 20px 0;
-    background-color: #fff;
-    /* Branco para a tabela */
+    background-color: #f0f8ff; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
 }
 
 th,
 td {
     border: 1px solid #000;
-    /* Bordas pretas */
+    background-color: #000542;
+    color: #fff;
     padding: 12px;
     text-align: left;
 }
 
 th {
     background-color: #000;
-    /* Fundo preto para o cabeçalho */
     color: #fff;
     /* Texto branco */
 }
@@ -324,20 +330,95 @@ tr:hover {
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
-    background-color: #333;
+    background-color: #000542;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: left;
 }
 
 .botao:hover {
-    background-color: #666;
+    background-color: #290091;
     transform: translateY(-3px);
 }
 
 
 .botao:active {
+    transform: translateY(1px);
+}
+
+h1 {
+    text-align: center;
+    margin-right: 160px;
+    color: #fff;
+}
+
+table {
+    text-align: center;
+}
+
+.alinhamento {
+    width: 1000px;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.alinhamento2 {
+    width: 1115px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.alinhamento3 {
+    width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    color: white;
+    background-color: #000542;
+    border-color: white;
+    border-radius: 3px;
+    border-left: 10px;
+    border-right: 10px;
+}
+.logo-img {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-right: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 12px; 
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(5, 0, 145, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(5, 0, 145, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(18, 0, 177, 0.3);
+}
+
+#botaoSalvar {
+    background-color: #290091;
+    transform: translateY(-3px);
+    color: white;
+}
+#botaoSalvar:hover {
+    background-color: #290091;
+    transform: translateY(-3px);
+}
+
+
+#botaoSalvar:active {
     transform: translateY(1px);
 }
