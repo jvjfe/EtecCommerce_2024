@@ -1,0 +1,16 @@
+TYPE=VIEW
+query=select `eteccommerce`.`unidade`.`IDUNIDADE` AS `IDUNIDADE`,`eteccommerce`.`unidade`.`NOME` AS `NOME`,`eteccommerce`.`unidade`.`PRODUTOS` AS `PRODUTOS` from `eteccommerce`.`unidade` order by `eteccommerce`.`unidade`.`NOME`
+md5=22066423ab9377904c6510091f0714db
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=2
+with_check_option=0
+timestamp=2024-11-26 00:12:14
+create-version=2
+source=SELECT IDUNIDADE,NOME,PRODUTOS FROM unidade ORDER BY NOME
+client_cs_name=cp850
+connection_cl_name=cp850_general_ci
+view_body_utf8=select `eteccommerce`.`unidade`.`IDUNIDADE` AS `IDUNIDADE`,`eteccommerce`.`unidade`.`NOME` AS `NOME`,`eteccommerce`.`unidade`.`PRODUTOS` AS `PRODUTOS` from `eteccommerce`.`unidade` order by `eteccommerce`.`unidade`.`NOME`
+mariadb-version=100125

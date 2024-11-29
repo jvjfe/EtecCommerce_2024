@@ -1,0 +1,16 @@
+TYPE=VIEW
+query=select `eteccommerce`.`marca`.`IDMARCA` AS `IDMARCA`,`eteccommerce`.`marca`.`NOME` AS `NOME`,`eteccommerce`.`marca`.`PRODUTOS` AS `PRODUTOS` from `eteccommerce`.`marca` order by `eteccommerce`.`marca`.`NOME`
+md5=07dc48b690e87ca3c017a7f77c4f1036
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=localhost
+suid=2
+with_check_option=0
+timestamp=2024-11-26 00:12:14
+create-version=2
+source=SELECT IDMARCA,NOME,PRODUTOS FROM marca ORDER BY NOME
+client_cs_name=cp850
+connection_cl_name=cp850_general_ci
+view_body_utf8=select `eteccommerce`.`marca`.`IDMARCA` AS `IDMARCA`,`eteccommerce`.`marca`.`NOME` AS `NOME`,`eteccommerce`.`marca`.`PRODUTOS` AS `PRODUTOS` from `eteccommerce`.`marca` order by `eteccommerce`.`marca`.`NOME`
+mariadb-version=100125
