@@ -12,9 +12,9 @@
     --corFonteDoBotaoDoCard: #F5F5F5;
 
 
-    --corFundoDoFooter: #3b00d2;
+    --corFundoDoFooter: #1900ff;
     --corFonteDoFooter: #DCDCDC;
-    --corHoverLinkDoFooter: #3b00d2;
+    --corHoverLinkDoFooter: #1900ff;
 
 
     --fontFamily: Verdana, Geneva, Tahoma, sans-serif;
@@ -161,7 +161,7 @@ main {
     background: linear-gradient(to bottom,
             #290091,
             #66ccff,
-            #3b00d2
+            #1900ff
         );
 }
 
